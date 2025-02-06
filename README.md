@@ -1,5 +1,8 @@
 # HexletCode
+[![CI](https://github.com/S1aks/rails-project-63/actions/workflows/main.yml/badge.svg)](https://github.com/S1aks/rails-project-63/actions/workflows/main.yml)
 [![hexlet-check](https://github.com/S1aks/rails-project-63/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/S1aks/rails-project-63/actions/workflows/hexlet-check.yml)
+[![Minitest Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop-minitest)
+[![Minitest Style Guide](https://img.shields.io/badge/code_style-community-brightgreen.svg)](https://minitest.rubystyle.guide)
 
 Form Generator is a DSL that makes it easy to save forms. This library takes on tasks that usually require writing a lot of boilerplate code, such as error handling. In the Rails world, Simple Form is used for this. Our generator is similar to it conceptually, but is much simpler.
 
