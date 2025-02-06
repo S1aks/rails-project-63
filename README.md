@@ -1,5 +1,5 @@
 # HexletCode
-[![CI](https://github.com/S1aks/rails-project-63/actions/workflows/main.yml/badge.svg)](https://github.com/S1aks/rails-project-63/actions/workflows/main.yml)
+[![CI](https://github.com/S1aks/rails-project-63/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/S1aks/rails-project-63/actions/workflows/main.yml)
 [![hexlet-check](https://github.com/S1aks/rails-project-63/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/S1aks/rails-project-63/actions/workflows/hexlet-check.yml)
 [![Minitest Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop-minitest)
 [![Minitest Style Guide](https://img.shields.io/badge/code_style-community-brightgreen.svg)](https://minitest.rubystyle.guide)
