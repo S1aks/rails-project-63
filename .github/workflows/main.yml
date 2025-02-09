@@ -20,7 +20,7 @@ jobs:
           ruby-version: '3.2.2'
           bundler-cache: true
       - name: Run tests
-        run: make testing
+        run: make tests
 
   lint:
     runs-on: ubuntu-latest

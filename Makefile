@@ -8,5 +8,5 @@ lint:
 lint-fix:
 	bundle exec rubocop -A
 
-testing:
+tests:
 	bundle exec rake test

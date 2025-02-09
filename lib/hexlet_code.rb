@@ -1,26 +1,14 @@
 # frozen_string_literal: true
 
-require_relative 'hexlet_code/version'
-
+# Module for generate html form
 module HexletCode
+  autoload :Tag, 'hexlet_code/tag'
+  autoload :VERSION, 'hexlet_code/version'
+
   class Error < StandardError; end
 
-  # Tag generator class
-  class Tag
-    def self.build(name, attr = {})
-      result = []
-      result << "<#{name}"
-      attr.each do |key, value|
-        result << " #{key}=\"#{value}\""
-      end
-      result << '>'
-      result << yield.to_s if block_given?
-      result << "</#{name}>" unless single(name)
-      result.join
-    end
-
-    def self.single(name)
-      %w[!doctype area base br col embed hr img input link meta source track wbr].include?(name)
-    end
+  def self.form_for(_obj = nil, options = {})
+    build_options = { action: options.fetch(:url, '#'), method: 'post' }.merge(options.except(:url))
+    Tag.build('form', build_options)
   end
 end

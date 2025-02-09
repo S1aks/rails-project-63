@@ -3,54 +3,24 @@
 require_relative 'test_helper'
 
 class TestHexletCode < Minitest::Test
-  def test_that_it_has_a_version_number
-    refute_nil ::HexletCode::VERSION
+  User = Struct.new(:name, :job, keyword_init: true)
+  @user = User.new(name: 'rob')
+
+  def test_gen_empty_form_without_attributes
+    output = '<form action="#" method="post"></form>'
+
+    assert_equal output, HexletCode.form_for(@user)
   end
 
-  def test_build_br
-    input = 'br'
-    output = '<br>'
+  def test_gen_empty_form_with_class_attr
+    output = '<form action="#" method="post" class="hexlet-form"></form>'
 
-    assert_equal output, HexletCode::Tag.build(input)
+    assert_equal output, HexletCode.form_for(@user, class: 'hexlet-form')
   end
 
-  def test_build_image
-    input_name = 'img'
-    input_attr = { src: 'path/to/image' }
-    output = '<img src="path/to/image">'
+  def test_gen_empty_form_with_url_and_class_attr
+    output = '<form action="/profile" method="post" class="hexlet-form"></form>'
 
-    assert_equal output, HexletCode::Tag.build(input_name, input_attr)
-  end
-
-  def test_build_input
-    input_name = 'input'
-    input_attr = { type: 'submit', value: 'Save' }
-    output = '<input type="submit" value="Save">'
-
-    assert_equal output, HexletCode::Tag.build(input_name, input_attr)
-  end
-
-  def test_build_label
-    input_name = 'label'
-    input_str = 'Email'
-    output = '<label>Email</label>'
-
-    assert_equal output, HexletCode::Tag.build(input_name) { input_str }
-  end
-
-  def test_build_label_for
-    input_name = 'label'
-    input_attr = { for: 'email' }
-    input_str = 'Email'
-    output = '<label for="email">Email</label>'
-
-    assert_equal output, HexletCode::Tag.build(input_name, input_attr) { input_str }
-  end
-
-  def test_build_empty_div
-    input_name = 'div'
-    output = '<div></div>'
-
-    assert_equal output, HexletCode::Tag.build(input_name)
+    assert_equal output, HexletCode.form_for(@user, url: '/profile', class: 'hexlet-form')
   end
 end
