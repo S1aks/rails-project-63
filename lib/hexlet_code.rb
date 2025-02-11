@@ -2,13 +2,17 @@
 
 # Module for generate html form
 module HexletCode
+  autoload :FormBuilder, 'hexlet_code/form_builder'
   autoload :Tag, 'hexlet_code/tag'
   autoload :VERSION, 'hexlet_code/version'
 
   class Error < StandardError; end
 
-  def self.form_for(_obj = nil, options = {})
-    build_options = { action: options.fetch(:url, '#'), method: 'post' }.merge(options.except(:url))
-    Tag.build('form', build_options)
+  def self.form_for(object, **options, &block)
+    builder = FormBuilder.new(object)
+    block.call(builder) if block_given?
+    Tag.build 'form', options.merge(action: options.fetch(:url, '#'), method: 'post').except(:url) do
+      builder.inputs.join("\n")
+    end
   end
 end

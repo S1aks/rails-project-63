@@ -3,20 +3,23 @@
 module HexletCode
   # Tag generator class
   class Tag
-    def self.build(name, attr = {})
+    SINGLE_TAGS = %w[!doctype area base br col embed hr img input link meta source track wbr].freeze
+
+    def self.build(name, attributes)
       result = []
-      result << "<#{name}"
-      attr.each do |key, value|
-        result << " #{key}=\"#{value}\""
+      attributes.fetch(:tab, 0).times { result << '  ' }
+      result << "<#{name}#{attr_line(attributes)}>"
+      if block_given?
+        result << "\n" if name == 'form'
+        result << yield
+        result << "\n" if name == 'form'
       end
-      result << '>'
-      result << yield.to_s if block_given?
-      result << "</#{name}>" unless single?(name)
+      result << "</#{name}>" unless SINGLE_TAGS.include?(name)
       result.join
     end
 
-    def self.single?(name)
-      %w[!doctype area base br col embed hr img input link meta source track wbr].include?(name)
+    def self.attr_line(attributes)
+      attributes.except(:tab).map { |key, value| " #{key}=\"#{value}\"" }.join
     end
   end
 end

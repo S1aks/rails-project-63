@@ -25,24 +25,19 @@ gem install hexlet_code
 ## Usage
 
 ```ruby
-HexletCode::Tag.build('br')
-# <br>
+User = Struct.new(:name, :job, keyword_init: true)
+user = User.new(name: 'Alex', job: 'Developer')
 
-HexletCode::Tag.build('img', src: 'path/to/image')
-# <img src="path/to/image">
+form = HexletCode.form_for user, url: '/profile' do |f|
+  f.input :name, class: 'input-field'
+  f.input :job, as: :text, rows: 5
+end
 
-HexletCode::Tag.build('input', type: 'submit', value: 'Save')
-# <input type="submit" value="Save">
-
-# Для парных тегов тело передается как блок
-HexletCode::Tag.build('label') { 'Email' }
-# <label>Email</label>
-
-HexletCode::Tag.build('label', for: 'email') { 'Email' }
-# <label for="email">Email</label>
-
-HexletCode::Tag.build('div')
-# <div></div>
+puts form
+# <form action="/profile" method="post">
+#   <input name="name" type="text" value="Alex" class="input-field">
+#   <textarea name="job" rows="5" cols="20">Developer</textarea>
+# </form>
 ```
 
 ## Development
