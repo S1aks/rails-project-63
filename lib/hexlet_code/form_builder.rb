@@ -18,7 +18,7 @@ module HexletCode
     end
 
     def input(name, as: :input, **attributes)
-      raise NoMethodError, "undefined method `#{name}' for #{@object.inspect}" unless @object.respond_to?(name)
+      raise NoMethodError, "undefined method '#{name}' for #{@object.inspect}" unless @object.respond_to?(name)
 
       value = @object.public_send(name)
       add_label(name)
@@ -44,6 +44,8 @@ module HexletCode
         TextInput
       when :text
         TextArea
+      else
+        raise Error, "functionality field with name '#{name}' is not defined!"
       end
     end
   end
