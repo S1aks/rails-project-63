@@ -11,7 +11,10 @@ module HexletCode
   def self.form_for(object, **options, &block)
     builder = FormBuilder.new(object)
     block.call(builder) if block_given?
-    Tag.build 'form', options.merge(action: options.fetch(:url, '#'), method: 'post').except(:url) do
+    Tag.build 'form', {
+      action: options.fetch(:url, '#'),
+      method: options.fetch(:method, 'post')
+    }.merge(options).except(:url) do
       builder.fields.join("\n")
     end
   end
