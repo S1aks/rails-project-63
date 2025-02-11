@@ -26,17 +26,21 @@ gem install hexlet_code
 
 ```ruby
 User = Struct.new(:name, :job, keyword_init: true)
-user = User.new(name: 'Alex', job: 'Developer')
+user = User.new job: 'hexlet'
 
-form = HexletCode.form_for user, url: '/profile' do |f|
-  f.input :name, class: 'input-field'
-  f.input :job, as: :text, rows: 5
-end
+form = HexletCode.form_for user, url: '#' do |f|
+      f.input :name
+      f.input :job
+      f.submit 'Wow'
+    end
 
 puts form
-# <form action="/profile" method="post">
-#   <input name="name" type="text" value="Alex" class="input-field">
-#   <textarea name="job" rows="5" cols="20">Developer</textarea>
+# <form action="#" method="post">
+#   <label for="name">Name</label>
+#   <input name="name" type="text" value="">
+#   <label for="job">Job</label>
+#   <input name="job" type="text" value="hexlet">
+#   <input type="submit" value="Wow">
 # </form>
 ```
 

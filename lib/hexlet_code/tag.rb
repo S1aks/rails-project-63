@@ -19,7 +19,7 @@ module HexletCode
     end
 
     def self.attr_line(attributes)
-      attributes.except(:tab).map { |key, value| " #{key}=\"#{value}\"" }.join
+      attributes.except(:tab).map { |key, value| key == :disabled ? " #{key}" : " #{key}=\"#{value}\"" }.join
     end
   end
 end

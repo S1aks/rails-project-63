@@ -13,33 +13,35 @@ class TestHexletCode < Minitest::Test
     File.read(File.join(__dir__, 'fixtures', filename)).strip
   end
 
-  def test_form_build_with_textinput_and_textarea
+  def test_form_with_labels_and_submit
     form = HexletCode.form_for @user, url: '#' do |f|
-      f.input :name, class: 'user-input'
-      f.input :job, as: :text, rows: 50, cols: 50
+      f.input :name
+      f.input :job, as: :text
+      f.submit
     end
 
-    expected_form = read_fixture('form_with_textinput_and_textarea.html')
+    expected_form = read_fixture('form_with_labels_and_submit.html')
 
     assert_equal expected_form, form
   end
 
-  def test_form_build_with_default_values
-    form = HexletCode.form_for @user do |f|
+  def test_custom_submit_text_and_attributes
+    form = HexletCode.form_for(@user, url: '/profile') do |f|
+      f.submit 'Update Profile', class: 'btn-primary', disabled: true
+    end
+
+    expected_form = read_fixture('custom_submit_text_and_attributes.html')
+
+    assert_equal expected_form, form
+  end
+
+  def test_label_generation_rules
+    form = HexletCode.form_for @user, url: '#' do |f|
+      f.input :name
       f.input :job, as: :text
     end
 
-    expected_form = read_fixture('form_with_default_values.html')
-
-    assert_equal expected_form, form
-  end
-
-  def test_form_build_with_custom_attributes
-    form = HexletCode.form_for @user, url: '#' do |f|
-      f.input :job, as: :text, rows: 50, cols: 50
-    end
-
-    expected_form = read_fixture('form_with_custom_attributes.html')
+    expected_form = read_fixture('label_generation_rules.html')
 
     assert_equal expected_form, form
   end

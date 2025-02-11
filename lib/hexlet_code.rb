@@ -12,7 +12,7 @@ module HexletCode
     builder = FormBuilder.new(object)
     block.call(builder) if block_given?
     Tag.build 'form', options.merge(action: options.fetch(:url, '#'), method: 'post').except(:url) do
-      builder.inputs.join("\n")
+      builder.fields.join("\n")
     end
   end
 end
