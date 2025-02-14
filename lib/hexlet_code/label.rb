@@ -3,7 +3,7 @@
 module HexletCode
   # Class for render label form field
   class Label
-    def initialize(name, **attributes)
+    def initialize(name, _, attributes)
       @attributes = { tab: 1, for: name }.merge(attributes)
       @text = name.to_s.split('_').map(&:capitalize).join(' ')
     end

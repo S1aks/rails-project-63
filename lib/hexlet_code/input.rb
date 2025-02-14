@@ -2,10 +2,10 @@
 
 module HexletCode
   # Class for render text input form field
-  class TextInput
+  class Input
     DEFAULT_ATTRIBUTES = { type: 'text' }.freeze
 
-    def initialize(name, value, **attributes)
+    def initialize(name, value, attributes)
       @attributes = { name: name, tab: 1 }.merge(DEFAULT_ATTRIBUTES, { value: value }, attributes)
     end
 

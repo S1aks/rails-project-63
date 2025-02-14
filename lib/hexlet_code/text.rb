@@ -2,10 +2,10 @@
 
 module HexletCode
   # Class for render textarea form field
-  class TextArea
+  class Text
     DEFAULT_ATTRIBUTES = { cols: '20', rows: '40' }.freeze
 
-    def initialize(name, value, **attributes)
+    def initialize(name, value, attributes)
       @value = value
       @attributes = { tab: 1, name: name }.merge(DEFAULT_ATTRIBUTES, attributes)
     end

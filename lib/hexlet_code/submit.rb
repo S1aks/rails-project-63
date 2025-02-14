@@ -2,10 +2,10 @@
 
 module HexletCode
   # Class for render form submit button
-  class SubmitButton
+  class Submit
     DEFAULT_ATTRIBUTES = { type: 'submit' }.freeze
 
-    def initialize(value, **attributes)
+    def initialize(_, value, attributes)
       @attributes = { tab: 1 }.merge(DEFAULT_ATTRIBUTES, { value: value }, attributes)
     end
 

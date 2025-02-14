@@ -9,12 +9,12 @@ module HexletCode
       result = []
       attributes.fetch(:tab, 0).times { result << '  ' }
       result << "<#{name}#{attr_line(attributes)}>"
-      if block_given?
+      unless SINGLE_TAGS.include?(name)
         result << "\n" if name == 'form'
         result << yield
         result << "\n" if name == 'form'
+        result << "</#{name}>"
       end
-      result << "</#{name}>" unless SINGLE_TAGS.include?(name)
       result.join
     end
 
