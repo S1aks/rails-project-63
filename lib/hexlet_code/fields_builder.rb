@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module HexletCode
-  # Form builder class
+  # Fields builder class
   class FieldsBuilder
     attr_reader :fields
 
@@ -12,12 +12,14 @@ module HexletCode
 
     def input(name, as: :input, **attributes)
       value = @object.public_send(name)
-      @fields << { ftype: :label, name: name }
-      @fields << { ftype: as, name: name, value: value }.merge(attributes)
+      label_present = attributes.fetch(:label_present, true)
+      attributes.delete(:label_present)
+      @fields << { field_type: :label, name: name } if label_present
+      @fields << { field_type: as, name: name, value: value }.merge(attributes)
     end
 
     def submit(value = 'Save', **attributes)
-      @fields << { ftype: :submit, value: value }.merge(attributes)
+      @fields << { field_type: :submit, value: value }.merge(attributes)
     end
   end
 end
